@@ -1,25 +1,24 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_chat/ui/const/string_const.dart';
-import 'package:happy_chat/ui/screen/home_screen.dart';
 
 Widget position1(context) {
-  bool _isAnimated = false;
-  return AnimatedPositioned(
-      duration: Duration(seconds: 2),
-      top: MediaQuery.of(context).size.height * .15,
-     // left: MediaQuery.of(context).size.width * .30,
-      right:_isAnimated ? MediaQuery.of(context).size.width * .30:MediaQuery.of(context).size.width * .30,
-      width: MediaQuery.of(context).size.width*.5,
-      // width: MediaQuery.of(context).size.width,
-      child: Image.asset(
-        'assets/images/chat_img.png',
-        width: 150,
-      ));
+  bool isAnimated = false;
+
+  return  AnimatedPositioned(
+        duration: Duration(seconds: 2),
+        top: MediaQuery.of(context).size.height * .15,
+        left:  MediaQuery.of(context).size.width*25,
+       right: isAnimated ? MediaQuery.of(context).size.width * .25:MediaQuery.of(context).size.width*.25,
+        width: MediaQuery.of(context).size.width*.5,
+        child: Image.asset(
+          'assets/images/chat_img.png',
+          width: 150,
+        ),
+  );
 }
 
-Widget position2(context) {
+Widget position2(context,{required onPress}) {
   return Positioned(
 
       bottom: MediaQuery.of(context).size.height * .15,
@@ -30,10 +29,11 @@ Widget position2(context) {
       // width: MediaQuery.of(context).size.width,
       child: ElevatedButton.icon(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
-          );
+
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => HomeScreen()),
+          // );
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.red,
