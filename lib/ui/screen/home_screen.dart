@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // this list used for store user data;
   List<ChatUser> list = [];
 
   @override
@@ -48,9 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
         stream: ApiService.fireStore.collection('users').snapshots(),
 
         builder: (context, snapshot) {
-          //if data is loading
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
+              //waiting is used for when data is loading it show circular indicator
             case ConnectionState.none:
               return const Center(
                 child: CircularProgressIndicator(),
@@ -58,25 +59,10 @@ class _HomeScreenState extends State<HomeScreen> {
             //if some or all data is loaded then show it
             case ConnectionState.active:
             case ConnectionState.done:
-              // Create an empty list to store names.
-              //   final list =[];
-              //  if(snapshot.hasData){
-              // Get the documents (records) from the snapshot.
+
               final data = snapshot.data?.docs;
-              //Loop through each document in the data collection.
-              // for(var i in data!) {
-              //   // log('Data:${i.data()}');
-              //   // log('Data:${jsonEncode(i.data())}');
-              //   //
-              //   // // Extract the 'name' field and add it to the list.
-              //   // list.add(i.data()['name']);
-              //
-              //
-              //
-              //
-              // }
-              list =
-                  data?.map((e) => ChatUser.fromJson(e.data())).toList() ?? [];
+
+              list = data?.map((e) => ChatUser.fromJson(e.data())).toList() ?? [];
 
               if (list.isNotEmpty) {
                 return ListView.builder(

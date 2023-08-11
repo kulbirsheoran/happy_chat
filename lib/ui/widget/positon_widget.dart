@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_chat/ui/const/string_const.dart';
 
@@ -6,7 +5,7 @@ Widget position1(context) {
   bool isAnimated = false;
 
   return  AnimatedPositioned(
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
         top: MediaQuery.of(context).size.height * .15,
         left:  MediaQuery.of(context).size.width*25,
        right: isAnimated ? MediaQuery.of(context).size.width * .25:MediaQuery.of(context).size.width*.25,
@@ -24,9 +23,9 @@ Widget position2(context,{required onPress}) {
       bottom: MediaQuery.of(context).size.height * .15,
       left: MediaQuery.of(context).size.width * 0.05,
       width: MediaQuery.of(context).size.width * .9,
-      //right: MediaQuery.of(context).size.width*.1,
+
       height: MediaQuery.of(context).size.width * .15,
-      // width: MediaQuery.of(context).size.width,
+
       child: ElevatedButton.icon(
         onPressed: () {
 

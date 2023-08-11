@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:happy_chat/provider/login_provider.dart';
 import 'package:happy_chat/ui/const/string_const.dart';
-
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {

@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_chat/ui/auth/login_screen.dart';
+import 'package:happy_chat/ui/const/string_const.dart';
 import 'package:happy_chat/ui/screen/home_screen.dart';
 
 
@@ -43,9 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
               bottom: MediaQuery.of(context).size.height * .5,
               left: MediaQuery.of(context).size.width * 0.05,
               width: MediaQuery.of(context).size.width * .9,
-              //right: MediaQuery.of(context).size.width*.1,
               height: MediaQuery.of(context).size.width * .15,
-              // width: MediaQuery.of(context).size.width,
               child:
              Image.asset('assets/images/chat_img.png',width: 150,height: 150,),
           ),
@@ -58,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
         height: MediaQuery.of(context).size.width * .15,
         // width: MediaQuery.of(context).size.width,
         child:
-          Text('Made by Kulbir ❤️')
+          const Text(madeBy)
     ),
         ],
       )
