@@ -1,11 +1,10 @@
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:happy_chat/model/chat_user.dart';
 import 'package:happy_chat/service/firebase_service.dart';
 import 'package:happy_chat/ui/const/icon_const.dart';
 import 'package:happy_chat/ui/const/string_const.dart';
+import 'package:happy_chat/ui/screen/profile_screen.dart';
 import 'package:happy_chat/ui/widget/chat_user_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,7 +17,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // this list used for store user data;
   List<ChatUser> list = [];
-
+ @override
+  void initState() {
+    super.initState();
+    ApiService.getSelfInfo();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,21 +35,23 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {},
             icon: search,
           ),
-          IconButton(onPressed: () {}, icon: more)
+          IconButton(onPressed: () {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> ProfileScreen(user: ApiService.me,)));
+          }, icon: more)
         ],
       ),
       // floating button for add new user
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
         onPressed: () async {
-          await FirebaseAuth.instance.signOut();
-          await GoogleSignIn().signOut();
+          // await FirebaseAuth.instance.signOut();
+          // await GoogleSignIn().signOut();
         },
         child: const Icon(Icons.add_comment_rounded),
       ),
       body: StreamBuilder(
         // Use StreamBuilder widget to work with real-time data streams.
-        stream: ApiService.fireStore.collection('users').snapshots(),
+        stream: ApiService.getAllUsers(),
 
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {

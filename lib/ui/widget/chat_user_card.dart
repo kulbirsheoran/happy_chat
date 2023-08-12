@@ -24,17 +24,22 @@ class _ChatUserCardState extends State<ChatUserCard> {
       child: InkWell(onTap: (){},
         child:  ListTile(
          // leading: const Icon(CupertinoIcons.person),
-        leading:  ClipRRect( borderRadius: const BorderRadius.all(Radius.circular(25 )),
-          child: CachedNetworkImage(
-            height: 50,width: 60,
-              imageUrl: widget.user.image,
-           //   placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => const CircleAvatar(child: Icon(Icons.person),),
-            ),
+        leading:  ClipRRect( borderRadius: const BorderRadius.all(Radius.circular(35 )),
+          child: CircleAvatar(
+            child: CachedNetworkImage(
+              height: 50,width: 60,fit: BoxFit.cover,
+                imageUrl: widget.user.image,
+             //   placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const CircleAvatar(child: Icon(Icons.person),),
+              ),
+          ),
         ),
           title: Text(widget.user.name),
           subtitle: Text(widget.user.about,maxLines: 1,),
-          trailing: const Text('time'),
+          trailing: ClipRRect(
+              child: Container(
+                decoration: BoxDecoration(shape: BoxShape.circle,  color: Colors.green,),
+              height: 15,width: 20,)),
         ),
       ),
 
