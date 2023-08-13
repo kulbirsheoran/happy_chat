@@ -10,20 +10,24 @@ class ApiService {
   static User get user => auth.currentUser!;
 
   //for storing self information
-  static late  ChatUser me;
+  static late ChatUser me;
 
   static Future<bool> userExists() async {
     return (await fireStore.collection('users').doc(user.uid).get()).exists;
   }
+
   // for user info
   static Future<void> getSelfInfo() async {
-     await fireStore.collection('users').doc(user.uid).get().then((user) async => {
-       if(user.exists){
-         me = ChatUser.fromJson(user.data()!)
-       }else{
-         await createUser().then((value) => getSelfInfo())
-    }
-     });
+    await fireStore
+        .collection('users')
+        .doc(user.uid)
+        .get()
+        .then((user) async => {
+              if (user.exists)
+                {me = ChatUser.fromJson(user.data()!)}
+              else
+                {await createUser().then((value) => getSelfInfo())}
+            });
   }
 
   static Future<void> createUser() async {
@@ -49,5 +53,12 @@ class ApiService {
         .collection('users')
         .where('id', isNotEqualTo: user.uid)
         .snapshots();
+  }
+
+  static Future<void> updateUserInfo() async {
+    return (await fireStore.collection('users').doc(user.uid).update({
+      'name': me.name,
+      'about': me.about,
+    }));
   }
 }
