@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:happy_chat/provider/profile_provider.dart';
 import 'package:happy_chat/provider/login_provider.dart';
 
 import 'package:happy_chat/ui/screen/splash_screen.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
     return  MultiProvider(
       providers:[
         ChangeNotifierProvider(create: (context)=>loginScreenProvider()),
+        ChangeNotifierProvider(create: (context)=>ProfileScreenProvider()),
       ],
       child: MaterialApp(
        debugShowCheckedModeBanner: false,
