@@ -32,11 +32,11 @@ class loginScreenProvider extends ChangeNotifier {
 
         if (await ApiService.userExists()) {
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()));
+              MaterialPageRoute(builder: (context) =>  HomeScreen()));
         } else {
           await ApiService.createUser().then((value) =>
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()))
+                  MaterialPageRoute(builder: (context) =>  HomeScreen()))
           );
         }
       }
